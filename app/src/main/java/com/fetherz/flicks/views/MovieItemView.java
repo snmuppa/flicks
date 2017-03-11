@@ -53,8 +53,6 @@ public class MovieItemView extends RelativeLayout {
         tvMovieTitle.setText(movie.getTitle());
         tvMovieOverview.setText(movie.getOverview());
         Picasso.with(getContext()).load(movie.getPosterPath())
-                .fit()
-                .centerCrop()
                 .transform(new RoundedCornersTransformation(10, 10))
                 .placeholder(R.drawable.image_spinner)
                 .error(R.drawable.image_error)
@@ -65,8 +63,6 @@ public class MovieItemView extends RelativeLayout {
         tvMovieTitle.setText(movie.getTitle());
         tvMovieOverview.setText(movie.getOverview());
         Picasso.with(getContext()).load(movie.getBackdropPath())
-                .fit()
-                .centerCrop()
                 .transform(new RoundedCornersTransformation(10, 10))
                 .placeholder(R.drawable.image_spinner)
                 .error(R.drawable.image_error)
