@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/ivMovieImage"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingRight="5dp"
+        android:contentDescription="@string/movie_image_content_description"
+        tools:src="@drawable/image_spinner"/>
+
+    <TextView
+        android:id="@+id/tvMovieTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivMovieImage"
+        tools:text="Fifty Shades Darker"
+        />
+
+    <TextView
+        android:id="@+id/tvMovieOverView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivMovieImage"
+        android:layout_below="@id/tvMovieTitle"
+        android:layout_marginTop="5dp"
+        tools:text="When a wounded Christian Grey tries to entice a cautious Ana Steele back into his life, she demands a new arrangement before she will give him another chance. As the two begin to build trust and find stability, shadowy figures from Christian’s past start to circle the couple, determined to destroy their hopes for a future together."
+        />
+
+</merge>

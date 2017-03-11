@@ -50,7 +50,7 @@ public class Movie {
     double voteAverage;
 
     public String getPosterPath() {
-        return String.format("http://image.tmdb.org/t/p/%s", posterPath);
+        return String.format("http://image.tmdb.org/t/p/w342/%s", posterPath);
     }
 
     public boolean isAdult() {
