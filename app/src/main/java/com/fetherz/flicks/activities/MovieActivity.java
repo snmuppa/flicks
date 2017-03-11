@@ -2,6 +2,7 @@ package com.fetherz.flicks.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -35,7 +36,21 @@ public class MovieActivity extends AppCompatActivity {
         movieArrayAdapter = new MovieArrayAdapter(this, movies);
         lvMoviesNowPlaying.setAdapter(movieArrayAdapter);
 
+
+        setToolBar();
+
         fetchMoviesPlayingNow();
+    }
+
+    private void setToolBar() {
+        // Find the toolbar view and set as ActionBar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Display icon in the toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
     private void fetchMoviesPlayingNow() {
