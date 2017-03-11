@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Flicks</string>
+    <string name="url_path_movies_now_playing">now_playing</string>
+    <string name="url_path_movies_configuration">configuration</string>
+    <string name="url_path_movie_videos">videos</string>
+    <string name="url_path_movie_trailers">trailers</string>
 </resources>
