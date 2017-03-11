@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="com.fetherz.flicks.activities.MovieActivity">
+    android:padding="5dp"
+    tools:context="com.fetherz.flicks.activities.MovieActivity"
+    android:background="@color/colorPrimary">
 
     <ListView
         android:id="@+id/lvMoviesNowPlaying"
