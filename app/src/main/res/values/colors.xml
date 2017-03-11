@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorMovieTitleText">#FFFFFF</color>
     <color name="colorMovieOverviewText">#BDBDBD</color>
-    <color name="colorMovieBackground">#212121</color>
+    <color name="colorMovieBackground">#303030</color>
     <color name="cursorAccent">#FF4081</color>
     <color name="controlNormal">#BDBDBD</color>
     <color name="controlActivated">#FF4081</color>

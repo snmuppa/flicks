@@ -19,8 +19,8 @@
         android:layout_alignParentTop="true"
         android:theme="@style/ToolbarTheme"
         app:titleTextAppearance="@style/Toolbar.TitleText"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp">
+        app:contentInsetLeft="5dp"
+        app:contentInsetStart="5dp">
     </android.support.v7.widget.Toolbar>
 
 
