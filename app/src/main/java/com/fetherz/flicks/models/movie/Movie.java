@@ -82,7 +82,7 @@ public class Movie {
     }
 
     public String getBackdropPath() {
-        return backdropPath;
+        return String.format("http://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
     public double getPopularity() {

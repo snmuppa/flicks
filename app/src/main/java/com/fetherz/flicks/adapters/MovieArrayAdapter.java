@@ -1,6 +1,7 @@
 package com.fetherz.flicks.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,14 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (movieItemView == null) {
             movieItemView = MovieItemView.inflate(parent);
         }
-        movieItemView.setMovieItem(getItem(position));
+
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            movieItemView.setPortraitMovieItem(getItem(position));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            movieItemView.setLandscapeMovieItem(getItem(position));
+        }
+
         return movieItemView;
     }
 
