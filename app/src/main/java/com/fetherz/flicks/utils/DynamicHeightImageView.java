@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 /**
  * An {@link android.widget.ImageView} layout that maintains a consistent width to height aspect ratio.
+ * @see <a href="https://github.com/etsy/AndroidStaggeredGrid/blob/master/library/src/main/java/com/etsy/android/grid/util/DynamicHeightImageView.java">reference</a>
  */
 @SuppressLint("AppCompatCustomView")
 public class DynamicHeightImageView extends ImageView {
