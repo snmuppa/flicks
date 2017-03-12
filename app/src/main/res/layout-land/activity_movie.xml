@@ -20,6 +20,12 @@
         app:titleTextAppearance="@style/Toolbar.TitleText"
         app:contentInsetLeft="5dp"
         app:contentInsetStart="5dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:contentDescription="@string/movie_image_content_description"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:src="@drawable/icon_actionbar"/>
     </android.support.v7.widget.Toolbar>
 
 
