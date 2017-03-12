@@ -113,4 +113,23 @@ public class Movie {
     public double getVoteAverage() {
         return voteAverage;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "posterPath='" + posterPath + '\'' +
+                ", adult=" + adult +
+                ", overview='" + overview + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", genreIds=" + genreIds +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", title='" + title + '\'' +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", popularity=" + popularity +
+                ", voteCount=" + voteCount +
+                ", isVideo=" + isVideo +
+                ", voteAverage=" + voteAverage +
+                '}';
+    }
 }

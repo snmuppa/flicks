@@ -59,7 +59,7 @@ public class HeterogenousMovieRecyclerViewAdapter extends RecyclerView.Adapter<R
                 break;
             default:
                 View nonPopularView = inflater.inflate(R.layout.layout_non_popular_movie, viewGroup, false);
-                viewHolder = new NonPopularMovieViewHolder(nonPopularView);
+                viewHolder = new NonPopularMovieViewHolder(nonPopularView, movies);
                 break;
         }
 
