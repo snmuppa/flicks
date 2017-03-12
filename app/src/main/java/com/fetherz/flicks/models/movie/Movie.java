@@ -10,6 +10,10 @@ import java.util.List;
  */
 
 public class Movie {
+
+    public static final int NON_POPULAR_TYPE = 1;
+    public static final int POPULAR_TYPE = 2;
+
     @SerializedName("poster_path")
     String posterPath;
 
@@ -87,6 +91,15 @@ public class Movie {
 
     public double getPopularity() {
         return popularity;
+    }
+
+    public int getViewType(){
+        if(voteAverage > 5){
+            return POPULAR_TYPE;
+        }
+        else{
+            return NON_POPULAR_TYPE;
+        }
     }
 
     public double getVoteCount() {
