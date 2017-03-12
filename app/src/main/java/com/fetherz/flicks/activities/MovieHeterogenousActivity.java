@@ -1,6 +1,7 @@
 package com.fetherz.flicks.activities;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,9 +25,7 @@ import cz.msebera.android.httpclient.Header;
 
 import static com.fetherz.flicks.utils.JsonHelper.GetResponseObject;
 
-
 public class MovieHeterogenousActivity extends AppCompatActivity {
-
     RecyclerView rvHeterogenousMovies;
     List<Movie> movies;
     HeterogenousMovieRecyclerViewAdapter recyclerViewAdapter;
@@ -34,13 +33,28 @@ public class MovieHeterogenousActivity extends AppCompatActivity {
     // Store a member variable for the listener
     private EndlessRecyclerViewScrollListener scrollListener;
 
-    int page = 0;
+    private SwipeRefreshLayout swipeContainer;
+
+    private static final int START_PAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_heterogenous);
 
+        setSwipeRefreshContainer();
+
+        setRecyclerView();
+
+        resetEndlessScroller();
+
+        //set the initial pages
+        loadNextDataFromApi(START_PAGE);
+
+        setToolBar();
+    }
+
+    private void setRecyclerView() {
         // Lookup the recyclerview in activity layout
         rvHeterogenousMovies = (RecyclerView)findViewById(R.id.rvHeterogenousMovies);
 
@@ -68,18 +82,40 @@ public class MovieHeterogenousActivity extends AppCompatActivity {
             }
         };
 
-        resetEndlessScroller();
-
         // Adds the scroll listener to RecyclerView
         rvHeterogenousMovies.addOnScrollListener(scrollListener);
-
-        //set the initial pages
-        loadNextDataFromApi(1);
-
-        setToolBar();
     }
 
-    private void loadNextDataFromApi(int page) {
+    private void setSwipeRefreshContainer() {
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                swipeRefreshMovieData();
+            }
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
+
+    private void swipeRefreshMovieData() {
+        loadNextDataFromApi(START_PAGE, true); //start at first page
+    }
+
+    private void loadNextDataFromApi(int page){
+        loadNextDataFromApi(page, false);
+    }
+
+    private void loadNextDataFromApi(int page, final boolean isSwipeRefresh) {
         RequestParams params = new RequestParams();
         params.put(getString(R.string.url_path_param_page_key), page);
 
@@ -99,11 +135,21 @@ public class MovieHeterogenousActivity extends AppCompatActivity {
                 catch (JsonSyntaxException ex) {
                     Log.e("Error---->", ex.getMessage());
                 }
+                if(isSwipeRefresh){
+                    resetEndlessScroller();
+                }
+
                 if(moviesNowPlayingResponse != null && moviesNowPlayingResponse.getMovies() != null && moviesNowPlayingResponse.getMovies().size() > 0)
                 {
                     int currSize = recyclerViewAdapter.getItemCount();
                     movies.addAll(moviesNowPlayingResponse.getMovies());
                     recyclerViewAdapter.notifyItemRangeInserted(currSize, moviesNowPlayingResponse.getMovies().size() - 1);
+                }
+
+                if(isSwipeRefresh){
+                    // Now we call setRefreshing(false) to signal refresh has finished
+                    swipeContainer.setRefreshing(false);
+
                 }
             }
         });

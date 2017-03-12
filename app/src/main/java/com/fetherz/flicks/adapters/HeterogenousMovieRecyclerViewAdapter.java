@@ -111,4 +111,16 @@ public class HeterogenousMovieRecyclerViewAdapter extends RecyclerView.Adapter<R
             nonPopularMovieViewHolder.getTvNonPopularMovieOverView().setText(movie.getOverview());
         }
     }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        movies.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Movie> list) {
+        movies.addAll(list);
+        notifyDataSetChanged();
+    }
 }
