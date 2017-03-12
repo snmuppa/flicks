@@ -17,14 +17,14 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 * [x] Display a nice default [placeholder graphic](http://guides.codepath.com/android/Displaying-Images-with-the-Picasso-Library#configuring-picasso) for each image during loading.
-* [ ] Improved the user interface through styling and coloring.
+* [x] Improved the user interface through styling and coloring.
 
 The following **bonus** features are implemented:
 
 * [] Allow user to view details of the movie including ratings and popularity within a separate activity or dialog fragment.
-* [] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
+* [x] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
 * [ ] Allow video trailers to be played in full-screen using the YouTubePlayerView.
-    * [ ] Overlay a play icon for videos that can be played.
+    * [x] Overlay a play icon for videos that can be played.
     * [ ] More popular movies should start a separate activity that plays the video immediately.
     * [ ] Less popular videos rely on the detail page should show ratings and a YouTube preview.
 * [ ] Apply the popular [Butterknife annotation library](http://guides.codepath.com/android/Reducing-View-Boilerplate-with-Butterknife) to reduce boilerplate code.
@@ -39,12 +39,14 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://raw.githubusercontent.com/snmuppa/flicks/master/demos/Flicks+v1.0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://raw.githubusercontent.com/snmuppa/flicks/master/demos/Flicks+v1.1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-Used more complex subclassing for views in the first pass rather than ViewHolder.
+Used more complex subclassing for views in the first pass rather than ViewHolder for initial ListView implementation.
+Improved the functionality by implementing heterogenous layout with RecyclerView using ViewHolder pattern.
+Replace ActionBar with it's spiritual successor, 'Toolbar'.
 Describe any challenges encountered while building the app.
 
 ## Open-source libraries used

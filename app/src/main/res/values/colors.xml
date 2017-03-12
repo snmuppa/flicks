@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorMovieTitleText">#FFFFFF</color>
     <color name="colorMovieOverviewText">#BDBDBD</color>
-    <color name="colorMovieBackground">#303030</color>
+    <color name="colorMovieBackground">#090F0F</color>
     <color name="cursorAccent">#FF4081</color>
     <color name="controlNormal">#BDBDBD</color>
     <color name="controlActivated">#FF4081</color>

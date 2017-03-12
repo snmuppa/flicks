@@ -82,9 +82,15 @@ public class HeterogenousMovieRecyclerViewAdapter extends RecyclerView.Adapter<R
 
     }
 
-    private void configurePopularViewHolder(PopularMovieViewHolder popularMovieViewHolder, int position) {
+    private void configurePopularViewHolder(final PopularMovieViewHolder popularMovieViewHolder, int position) {
         Movie movie = movies.get(position);
         if (movie != null) {
+
+            // `popularMovieViewHolder.getPopularMovieImage()` should be of type `DynamicHeightImageView`
+            // Set the height ratio before loading in image into Picasso
+            popularMovieViewHolder.getPopularMovieImage().setHeightRatio(((double)192)/342);
+            // Load the image into the view using Picasso
+
             Picasso.with(context).load(movie.getBackdropPath())
                     .transform(new RoundedCornersTransformation(10, 10))
                     .placeholder(R.drawable.image_spinner)

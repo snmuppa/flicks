@@ -2,27 +2,28 @@ package com.fetherz.flicks.ViewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.fetherz.flicks.R;
+import com.fetherz.flicks.utils.DynamicHeightImageView;
 
 /**
  * Created by sm032858 on 3/11/17.
  */
 
 public class PopularMovieViewHolder extends RecyclerView.ViewHolder {
-    private ImageView ivPopularMovie;
+    private DynamicHeightImageView ivPopularMovie;
 
     public PopularMovieViewHolder(View v) {
         super(v);
-        ivPopularMovie = (ImageView) v.findViewById(R.id.ivPopularMovie);
+        ivPopularMovie = (DynamicHeightImageView) v.findViewById(R.id.ivPopularMovie);
     }
 
-    public ImageView getPopularMovieImage() {
+    public DynamicHeightImageView getPopularMovieImage() {
         return ivPopularMovie;
     }
 
-    public void setPopularMovieImage(ImageView popularMovieImage) {
+    public void setPopularMovieImage(DynamicHeightImageView popularMovieImage) {
         ivPopularMovie = popularMovieImage;
     }
 }
+
