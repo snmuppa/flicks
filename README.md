@@ -61,6 +61,8 @@ Describe any challenges encountered while building the app.
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [OkHttp] (https://github.com/square/okhttp) - An HTTP & HTTP/2 client for Android and Java applications
+- [Gson] (https://github.com/google/gson) - Gson is a Java library that can be used to convert Java Objects into their JSON representation
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
