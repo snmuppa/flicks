@@ -51,7 +51,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         movieTitleTextView.setText(movie.getTitle());
         movieRatingBar.setRating(((float)movie.getVoteAverage() / 2));
         movieVoteAvg.setText(getDetailText("Vote Average", String.valueOf(movie.getVoteAverage())));
-        movieVoteAvg.setText(getDetailText("Vote Count", String.valueOf(movie.getVoteCount())));
+        movieVoteCount.setText(getDetailText("Vote Count", String.valueOf(movie.getVoteCount())));
         movieLanguageTextView.setText(getDetailText("Original Language", movie.getOriginalLanguage()));
         movieOverviewTextView.setText(movie.getOverview());
         movieReleaseDateTextView.setText(getDetailText("Release Date", movie.getReleaseDate()));

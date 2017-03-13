@@ -49,7 +49,7 @@ public class Movie implements Serializable {
     double popularity;
 
     @SerializedName("vote_count")
-    double voteCount;
+    int voteCount;
 
     @SerializedName("video")
     boolean isVideo;
@@ -107,7 +107,7 @@ public class Movie implements Serializable {
         }
     }
 
-    public double getVoteCount() {
+    public int getVoteCount() {
         return voteCount;
     }
 

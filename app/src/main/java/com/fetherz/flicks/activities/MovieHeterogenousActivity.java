@@ -12,16 +12,17 @@ import com.fetherz.flicks.R;
 import com.fetherz.flicks.adapters.HeterogenousMovieRecyclerViewAdapter;
 import com.fetherz.flicks.models.movie.Movie;
 import com.fetherz.flicks.models.movie.MoviesNowPlayingResponse;
-import com.fetherz.flicks.network.MoviesDbRestClient;
+import com.fetherz.flicks.network.OkHttpUtil;
 import com.fetherz.flicks.views.events.EndlessRecyclerViewScrollListener;
 import com.google.gson.JsonSyntaxException;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.TextHttpResponseHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import cz.msebera.android.httpclient.Header;
+import okhttp3.Response;
 
 import static com.fetherz.flicks.utils.JsonHelper.GetResponseObject;
 
@@ -36,6 +37,16 @@ public class MovieHeterogenousActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
     private static final int START_PAGE = 1;
+
+    private static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
+    private static final String API_KEY = "api_key";
+    private static final String API_KEY_VALUE = "6c923ac5aaa1ba64c14f123661d35d0a";
+
+    private static OkHttpUtil httpUtil;
+
+    static {
+        httpUtil = new OkHttpUtil();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,40 +127,59 @@ public class MovieHeterogenousActivity extends AppCompatActivity {
     }
 
     private void loadNextDataFromApi(int page, final boolean isSwipeRefresh) {
-        RequestParams params = new RequestParams();
-        params.put(getString(R.string.url_path_param_page_key), page);
+        String baseUrl = String.format("%s%s", BASE_URL, getString(R.string.url_path_movies_now_playing));
 
-        MoviesDbRestClient.getAsync(getString(R.string.url_path_movies_now_playing), params, new TextHttpResponseHandler() {
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put(API_KEY, API_KEY_VALUE);
+        queryParams.put(getString(R.string.url_path_param_page_key), String.valueOf(page));
+
+        httpUtil.get(baseUrl, queryParams, new OkHttpUtil.HttpCallback() {
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            public void onFailure(Response response, IOException e) {
                 // Handle the failure and alert the user to retry
-                Log.e("Error----> ", ""+statusCode+" ------ "+ responseString);
+                Log.e("Error----> ", response.toString());
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                MoviesNowPlayingResponse moviesNowPlayingResponse = null;
+            public void onSuccess(Response response) {
                 try {
-                    moviesNowPlayingResponse = GetResponseObject(responseString, MoviesNowPlayingResponse.class);
-                }
-                catch (JsonSyntaxException ex) {
+                    MoviesNowPlayingResponse moviesNowPlayingResponse = null;
+                    try {
+                        String jsonString = response.body().string();
+                        moviesNowPlayingResponse = GetResponseObject(jsonString, MoviesNowPlayingResponse.class);
+                    }
+                    catch (JsonSyntaxException ex) {
+                        Log.e("Error---->", ex.getMessage());
+                    }
+
+
+                    final MoviesNowPlayingResponse finalMoviesNowPlayingResponse = moviesNowPlayingResponse;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(isSwipeRefresh){
+                                resetEndlessScroller();
+                            }
+
+                            if(finalMoviesNowPlayingResponse != null && finalMoviesNowPlayingResponse.getMovies() != null
+                                    && finalMoviesNowPlayingResponse.getMovies().size() > 0)
+                            {
+                                int currSize = recyclerViewAdapter.getItemCount();
+                                movies.addAll(finalMoviesNowPlayingResponse.getMovies());
+                                recyclerViewAdapter.notifyItemRangeInserted(currSize, finalMoviesNowPlayingResponse.getMovies().size() - 1);
+                            }
+
+                            if(isSwipeRefresh){
+                                // Now we call setRefreshing(false) to signal refresh has finished
+                                swipeContainer.setRefreshing(false);
+
+                            }
+                        }
+                    });
+
+                } catch (IOException ex) {
                     Log.e("Error---->", ex.getMessage());
-                }
-                if(isSwipeRefresh){
-                    resetEndlessScroller();
-                }
-
-                if(moviesNowPlayingResponse != null && moviesNowPlayingResponse.getMovies() != null && moviesNowPlayingResponse.getMovies().size() > 0)
-                {
-                    int currSize = recyclerViewAdapter.getItemCount();
-                    movies.addAll(moviesNowPlayingResponse.getMovies());
-                    recyclerViewAdapter.notifyItemRangeInserted(currSize, moviesNowPlayingResponse.getMovies().size() - 1);
-                }
-
-                if(isSwipeRefresh){
-                    // Now we call setRefreshing(false) to signal refresh has finished
-                    swipeContainer.setRefreshing(false);
-
                 }
             }
         });
