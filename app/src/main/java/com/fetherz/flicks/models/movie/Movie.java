@@ -2,6 +2,8 @@ package com.fetherz.flicks.models.movie;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -9,10 +11,12 @@ import java.util.List;
  * Created by sm032858 on 3/10/17.
  */
 
-public class Movie {
+public class Movie implements Serializable {
 
     public static final int NON_POPULAR_TYPE = 1;
     public static final int POPULAR_TYPE = 2;
+
+    private static final String DATE_TIME_FORMAT  = "MMM dd, yyyy";
 
     @SerializedName("poster_path")
     String posterPath;
@@ -65,8 +69,9 @@ public class Movie {
         return overview;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public String getReleaseDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
+        return sdf.format(releaseDate);
     }
 
     public String getOriginalTitle() {

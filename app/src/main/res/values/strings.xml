@@ -6,4 +6,7 @@
     <string name="url_path_movie_trailers">trailers</string>
     <string name="url_path_param_page_key">page</string>
     <string name="movie_image_content_description">Movie Image</string>
+    <string name="movie_details_overview_label">Movie Overview</string>
+
+    <string name="movie_details">%1$s: &lt;b> %2$s &lt;/b></string>
 </resources>
