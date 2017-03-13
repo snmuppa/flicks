@@ -34,7 +34,11 @@ The following **bonus** features are implemented:
 The following **additional** features are implemented:
 
 * [x] List anything else that you can get done to improve the app functionality!
+
+
 Implemented endless scrolling with RecyclerView.
+
+
 Implemented swipe refresh for RecyclerView.
 
 ## Video Walkthrough
@@ -47,8 +51,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 Used more complex subclassing for views in the first pass rather than ViewHolder for initial ListView implementation.
+
 Improved the functionality by implementing heterogenous layout with RecyclerView using ViewHolder pattern.
+
 Replace ActionBar with it's spiritual successor, 'Toolbar'.
+
 Describe any challenges encountered while building the app.
 
 ## Open-source libraries used
